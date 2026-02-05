@@ -1,59 +1,29 @@
-import { fastifyCors } from '@fastify/cors'
-import { fastifySwagger } from '@fastify/swagger'
-import ScalarApiReference from '@scalar/fastify-api-reference'
 import { fastify } from 'fastify'
-import {
-  jsonSchemaTransform,
-  serializerCompiler,
-  validatorCompiler,
-  type ZodTypeProvider,
-} from 'fastify-type-provider-zod'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
+import { registerCors } from './plugins/cors.plugin'
+import { registerSwagger } from './plugins/swagger.plugin'
+import { registerZod } from './plugins/zod.plugin'
+import routes from './routes'
 
-const app = fastify().withTypeProvider<ZodTypeProvider>()
+async function bootstrap(): Promise<void> {
+  const app = fastify().withTypeProvider<ZodTypeProvider>()
 
-app.setValidatorCompiler(validatorCompiler)
-app.setSerializerCompiler(serializerCompiler)
+  registerZod(app)
+  registerCors(app)
+  registerSwagger(app)
+  await app.register(routes)
 
-app.register(fastifyCors, {
-  origin: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: false,
-})
+  const port = process.env.PORT ? parseInt(process.env.PORT) : 3333
+  const host = process.env.HOST || '0.0.0.0'
 
-app.register(fastifySwagger, {
-  openapi: {
-    info: {
-      title: 'AI RAG Chatbot API',
-      description: 'API Documentation',
-      version: '1.0.0',
-    },
-  },
-  transform: jsonSchemaTransform,
-})
-
-app.register(ScalarApiReference, {
-  routePrefix: '/api-docs',
-  configuration: {
-    theme: 'bluePlanet',
-  },
-})
-
-app.get('/test', async () => {
-  return {
-    status: 'Docker is working!',
-    timestamp: new Date().toISOString(),
-  }
-})
-
-const start = async () => {
   try {
-    await app.listen({ port: 3333, host: '0.0.0.0' })
-    console.log('😎 Server running on http://localhost:3333')
-    console.log('📄 Docs running on http://localhost:3333/api-docs')
+    await app.listen({ port, host })
+    console.log(`🚀 Server running at http://${host}:${port}`)
+    console.log(`📄 API Docs at http://${host}:${port}/api-docs`)
   } catch (err) {
     app.log.error(err)
     process.exit(1)
   }
 }
 
-start()
+bootstrap()
