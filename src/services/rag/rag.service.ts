@@ -1,3 +1,4 @@
+import { azureSearchService } from '@/services/azure-search/azure-search.service'
 import { openAiService } from '@/services/open-ai/open-ai.service'
 import { RolesEnum } from '@/types/roles.type'
 import type { ConversationCompletion } from './types'
@@ -22,8 +23,14 @@ export async function ragService(conversation: ConversationCompletion) {
     throw new Error('Embedding generation failed')
   }
 
+  const sections = await azureSearchService.search({
+    projectName: conversation.projectName,
+    embedding,
+  })
+
   return {
     embedding,
+    sections,
   }
 }
 
