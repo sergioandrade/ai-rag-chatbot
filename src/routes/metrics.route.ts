@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 
-export async function metricsRoutes(app: FastifyInstance): Promise<void> {
-  app.get('/metrics', async () => ({
+export const metricsRoutes = async (app: FastifyInstance) => {
+  app.get('/metrics', () => ({
     uptime: process.uptime(),
     memory: process.memoryUsage(),
   }))
