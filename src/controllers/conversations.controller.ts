@@ -1,11 +1,12 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { flattenError } from 'zod'
+import { ragService } from '@/services/rag/rag.service'
 import { conversationCompletionSchema } from './conversations.schema'
 
-async function conversationsController(
+export const conversationsController = async (
   request: FastifyRequest,
   reply: FastifyReply,
-) {
+) => {
   const parsed = conversationCompletionSchema.safeParse(request.body)
 
   if (!parsed.success) {
@@ -15,9 +16,7 @@ async function conversationsController(
     })
   }
 
-  //const result = await ragService.execute(parsed.data)
-  const result = { message: 'ok' }
+  const result = await ragService(parsed.data)
+
   return reply.status(200).send(result)
 }
-
-export { conversationsController }
