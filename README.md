@@ -13,7 +13,7 @@ A solução foi pensada como um **MVP**, com foco em:
 
 ## Por que Node.js com Fastify
 
-A escolha por **Node.js com Fastify** foi motivada pelo fato de **JavaScript ser a linguagem na qual tenho mais experiência**. Isso permitiu direcionar o esforço para os pontos mais relevantes deste desafio, como **arquitetura, organização do código e clareza da solução**, sem dispersão com detalhes específicos de linguagem ou framework.
+A escolha por **Node.js com Fastify** foi motivada pelo fato de **JavaScript ser a linguagem na qual tenho mais experiência**. Isso permitiu direcionar o esforço para os pontos mais relevantes, como **arquitetura, organização do código e clareza da solução**, sem dispersão com detalhes específicos de linguagem ou framework.
 
 O **Fastify** foi escolhido por ser:
 
@@ -52,3 +52,5 @@ http://localhost:3333/api-docs
 ```
 
 Não é necessário nenhum passo adicional para rodar ou testar a aplicação.
+
+Neste projeto, foi adotado o Recurso de Transferência (Opção 2) para permitir escalonamento automático de atendimento humano quando necessário.
