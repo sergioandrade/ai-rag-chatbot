@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { flattenError } from 'zod'
-import { HTTP_CODES } from '@/constants/routes.constant'
+import { HTTP_CODES } from '@/constants/http-codes.constant'
 import { ragService } from '@/services/rag/rag.service'
 import { conversationCompletionSchema } from './conversations.schema'
 

@@ -7,8 +7,3 @@ export const ROUTES = [
   { path: '/metrics', handler: metricsRoutes },
   { path: '/conversations', handler: conversationsRoutes },
 ]
-
-export const HTTP_CODES = {
-  OK: 200,
-  BAD_REQUEST: 400,
-}
