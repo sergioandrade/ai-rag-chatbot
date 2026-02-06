@@ -1,14 +1,4 @@
-import type { AzureSearchDocument } from '../azure-search/types'
-
-type BuildAssistantPromptInput = {
-  question: string
-  sections: AzureSearchDocument[]
-}
-
-type ChatMessage = {
-  role: 'system' | 'user'
-  content: string
-}
+import type { BuildAssistantPromptInput, ChatMessage } from './types'
 
 const PROMPT_CONTENT = `You are a customer support assistant.
 You must answer ONLY using the information provided in the context below.

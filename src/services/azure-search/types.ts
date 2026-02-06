@@ -19,6 +19,13 @@ export type AzureSearchDocument = {
   '@search.score': number
 }
 
+export type AzureSearchResult = Pick<
+  AzureSearchDocument,
+  'content' | 'type'
+> & {
+  score: number
+}
+
 export type AzureSearchResponse = {
   value: AzureSearchDocument[]
 }

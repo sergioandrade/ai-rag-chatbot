@@ -1,7 +1,7 @@
 import type {
-  AzureSearchDocument,
   AzureSearchRequest,
   AzureSearchResponse,
+  AzureSearchResult,
   SearchInput,
 } from './types'
 
@@ -11,7 +11,7 @@ const AZURE_SEARCH_API_VERSION = process.env.AZURE_SEARCH_API_VERSION as string
 const AZURE_AI_SEARCH_KEY = process.env.AZURE_AI_SEARCH_KEY as string
 const AZURE_SEARCH_LIMIT = 3
 
-async function search(input: SearchInput): Promise<AzureSearchDocument[]> {
+async function search(input: SearchInput): Promise<AzureSearchResult[]> {
   const { projectName, embedding } = input
 
   if (!projectName) {
@@ -62,7 +62,7 @@ async function search(input: SearchInput): Promise<AzureSearchDocument[]> {
   return data.value.map((doc) => ({
     content: doc.content,
     type: doc.type,
-    '@search.score': doc['@search.score'],
+    score: doc['@search.score'],
   }))
 }
 
