@@ -5,6 +5,8 @@ import { registerSwagger } from './plugins/swagger.plugin'
 import { registerZod } from './plugins/zod.plugin'
 import routes from './routes'
 
+const SERVER_PORT = process.env.SERVER_PORT
+
 async function bootstrap(): Promise<void> {
   const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -13,7 +15,7 @@ async function bootstrap(): Promise<void> {
   registerSwagger(app)
   await app.register(routes)
 
-  const port = process.env.PORT ? parseInt(process.env.PORT) : 3333
+  const port = SERVER_PORT ? parseInt(SERVER_PORT) : 3333
   const host = process.env.HOST || '0.0.0.0'
 
   try {

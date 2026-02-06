@@ -1,6 +1,6 @@
 import type z from 'zod'
 import type { conversationCompletionSchema } from '@/controllers/conversations.schema'
-import type { AzureSearchDocument } from '../azure-search/types'
+import type { AzureSearchResult } from '../azure-search/types'
 
 export type ConversationCompletion = z.infer<
   typeof conversationCompletionSchema
@@ -8,7 +8,7 @@ export type ConversationCompletion = z.infer<
 
 export type BuildAssistantPromptInput = {
   question: string
-  sections: AzureSearchDocument[]
+  sections: AzureSearchResult[]
 }
 
 export type ChatMessage = {
