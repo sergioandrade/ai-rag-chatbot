@@ -8,7 +8,7 @@ import type {
 const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT as string
 const AZURE_SEARCH_INDEX = process.env.AZURE_SEARCH_INDEX as string
 const AZURE_SEARCH_API_VERSION = process.env.AZURE_SEARCH_API_VERSION as string
-const AZURE_AI_SEARCH_KEY = process.env.AZURE_AI_SEARCH_KEY as string
+const AZURE_SEARCH_AI_KEY = process.env.AZURE_SEARCH_AI_KEY as string
 const AZURE_SEARCH_LIMIT = 3
 
 async function search(input: SearchInput): Promise<AzureSearchResult[]> {
@@ -43,7 +43,7 @@ async function search(input: SearchInput): Promise<AzureSearchResult[]> {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': AZURE_AI_SEARCH_KEY,
+        'api-key': AZURE_SEARCH_AI_KEY,
       },
       body: JSON.stringify(body),
     },
