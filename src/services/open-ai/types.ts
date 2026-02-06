@@ -17,3 +17,16 @@ export type OpenAiEmbeddingResponse = {
   model: string
   usage: OpenAiEmbeddingUsage
 }
+
+export type ChatMessage = {
+  role: 'system' | 'user' | 'assistant'
+  content: string
+}
+
+export type OpenAiChatChoice = {
+  message: ChatMessage
+}
+
+export type OpenAiChatCompletionResponse = {
+  choices: OpenAiChatChoice[]
+}
