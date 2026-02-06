@@ -27,6 +27,7 @@ O **Fastify** foi escolhido por ser:
 
 O projeto está totalmente configurado para execução via **Docker Compose**.
 
+Copie o arquivo `env.example` e renomeie para `.env`, adicione os valoreas às variáveis que estão lá presentes.
 Após configurar as variáveis de ambiente no arquivo `.env`, basta executar:
 
 ```
