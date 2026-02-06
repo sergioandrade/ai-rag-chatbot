@@ -1,3 +1,5 @@
+import type { ChatMessage } from '../rag/types'
+
 export type OpenAiEmbeddingVector = number[]
 
 export type OpenAiEmbeddingItem = {
@@ -16,4 +18,12 @@ export type OpenAiEmbeddingResponse = {
   data: OpenAiEmbeddingItem[]
   model: string
   usage: OpenAiEmbeddingUsage
+}
+
+export type OpenAiChatChoice = {
+  message: ChatMessage
+}
+
+export type OpenAiChatCompletionResponse = {
+  choices: OpenAiChatChoice[]
 }
